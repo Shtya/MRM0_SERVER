@@ -11,7 +11,7 @@ const createPost = AsyncHandler(async(req , res , next)=>{
 
 
 const  getPosts = AsyncHandler(async (req, res) => {
-  let data = await Post.find({}).sort({updateAt:-1})
+  let data = await Post.find(req.query).sort({createdAt:-1})
     res.status(200).json({data})
 })
 
