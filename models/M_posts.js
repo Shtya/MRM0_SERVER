@@ -4,6 +4,8 @@ const postSchema = new Schema ({
     category : {type : String }, 
     description : {type : String, required : true}, 
     thumbnail : {type : String, required : true}, 
+    titleData : {type : String}, 
+    descData : {type : String}, 
   }, {timestamps : true}) 
   
 module.exports = model("posts" , postSchema)
