@@ -15,7 +15,7 @@ const  getPosts = AsyncHandler(async (req, res) => {
 })
 
 const  getPost = AsyncHandler(async (req, res , next) => {
-  const data = await Post.findById(req.params.id)
+  const data = await Post.findOne({ID_: req.params.id })
   if(!data) next( new Error("There is not blog with this id"))
   res.status(200).json({data})
 })
@@ -28,14 +28,14 @@ const  getPostCate = AsyncHandler(async (req, res , next) => {
 
 
 const  editPost = AsyncHandler(async (req, res , next) => {
-  const data = await Post.findByIdAndUpdate(req.params.id, req.body , { new: true })
+  const data = await Post.findOneAndUpdate({ID_ : req.params.id}, req.body , { new: true })
   if(!data) next( new Error("There is not blog with this id"))
   res.status(201).json({data})
 })
 
 
 const  deletePost = AsyncHandler(async (req, res , next) => {
-  const data = await Post.findByIdAndDelete(req.params.id)
+  const data = await Post.findOneAndDelete({ID_ : req.params.id})
   if(!data) next( new Error("There is not blog with this id"))
   res.status(200).json("Done Deleted")
 })
